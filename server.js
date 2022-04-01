@@ -23,7 +23,7 @@ const options = {
 
 
  async function stocks() {
-     try {
+     try  {
      let stockSymbol = await axios.request(options)
      console.log(stockSymbol.data)
      }
