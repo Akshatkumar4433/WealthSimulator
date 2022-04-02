@@ -1,5 +1,5 @@
 const express = require('express');
-const axios = require( "axios");
+
 
 
 
@@ -12,26 +12,7 @@ const app = express();
 
 
 
-const options = {
-  method: 'GET',
-  url: 'https://stock-market-data.p.rapidapi.com/market/index/nasdaq-one-hundred',
-  headers: {
-    'X-RapidAPI-Host': 'stock-market-data.p.rapidapi.com',
-    'X-RapidAPI-Key': '6c3109b6b5msh329f55f6a3e6c75p10ffebjsn28fd97160287'
-  }
-};
-
-
- async function stocks() {
-     try {
-     let stockSymbol = await axios.request(options)
-     console.log(stockSymbol.data)
-     }
-     catch(error) {
-       console.log(error)
-     }
- }
- stocks()
+require('./StockApi/index.js')(app);
 
 
 app.get('/', (request, response) => {
