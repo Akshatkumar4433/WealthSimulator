@@ -2,7 +2,7 @@ const axios = require("axios");
 
 module.exports = (symbols) => {
      let stocks = {};
-     aysnc function getStocks() {
+    async function getStocks() {
        for(let i = 0; i<=5; i++) {
          const options = {
            method: 'GET',
@@ -13,10 +13,12 @@ module.exports = (symbols) => {
              'X-RapidAPI-Key': '6c3109b6b5msh329f55f6a3e6c75p10ffebjsn28fd97160287'
            }
          };
-         //Use Promise All Trick here 
-
+         //Use Promise All Trick here
+         stocks[symbols[i]] = await axios.request(options);
      }
-}
+     return stocks
+    }
+    return getStocks()
 }
 
 /*

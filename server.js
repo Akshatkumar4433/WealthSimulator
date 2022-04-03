@@ -10,14 +10,14 @@ let port = 3000 || process.env.PORT;
 of express framework*/
 const app = express();
 
+app.get('/', (request, response) => {
+     response.send('Welcome')
+})
 
 
 require('./StockApi/index.js')(app);
 
 
-app.get('/', (request, response) => {
-     response.send('Welcome')
-})
 
 
 app.listen(port, () => {
