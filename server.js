@@ -1,6 +1,6 @@
 const express = require('express');
-
-
+const path = require('path')
+const routes = require('./routes')
 
 
 //app setup
@@ -10,9 +10,11 @@ let port = 3000 || process.env.PORT;
 of express framework*/
 const app = express();
 
-app.get('/', (request, response) => {
-     response.send('Welcome')
-})
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, './views'))
+
+app.use('/', routes())
 
 
 require('./StockApi/index.js')(app);
