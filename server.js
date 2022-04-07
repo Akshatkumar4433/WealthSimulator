@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path')
 const routes = require('./routes')
-
+const coinsHelper = require('./coinsService/coinsHelper')
 
 
 //app setup
@@ -17,8 +17,8 @@ app.set('views', path.join(__dirname, './views'))
 
 //getting coin data
 app.use(async (request, response, next) => {
-  let coins = await coinPrices();
-  response.locals.coins = coins
+  let coins = new coinsHelper();
+  response.locals.coins = await coins.getAllNames()
   return next()
   }
 )

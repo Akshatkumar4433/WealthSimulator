@@ -26,8 +26,8 @@ class coinsHelper {
   async getAllNames() {
     const coinsAllNames  =  await this.coinsAllArray;
    return coinsAllNames.map(c => {
-     return {'name':c.name}
-   }).filter(c => c.name.length !== 0)
+     return c.name
+   }).filter(c => c.length !== 0)
   }
 
   async getPrice(name) {
