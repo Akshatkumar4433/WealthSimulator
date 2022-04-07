@@ -13,7 +13,8 @@ async function getCoins() {
 
 class coinsHelper {
   constructor() {
-    this.coinsAllArray = getCoins()
+    this.coinsAllArray = getCoins();
+    this.coinsAllNamesPrices = this.getAllNamesPrices();
   }
   async getAllNamesPrices() {
      const coinsAllNamesPrices  =  await this.coinsAllArray;
@@ -21,9 +22,24 @@ class coinsHelper {
       return {'name':c.name, 'price': c.price}
     }).filter(c => c.name.length !== 0) //some coins have no name empty string
   }
-  
+
+  async getAllNames() {
+    const coinsAllNames  =  await this.coinsAllArray;
+   return coinsAllNames.map(c => {
+     return {'name':c.name}
+   }).filter(c => c.name.length !== 0)
+  }
+
+  async getPrice(name) {
+    let coinslist = await this.coinsAllNamesPrices;
+    return coinslist.filter(c => c.name == name)[0].price
+  }
+
+  async getAllInfo(name) {
+    let coinslist = await this.coinsAllArray;
+    return coinslist.filter(c => c.name)[0]
+  }
+
 }
 
-/* TESTING */
-let instance = new coinsHelper()
-instance.getAllNamesPrices().then(value => {console.log(value)})
+module.exports = coinsHelper;
