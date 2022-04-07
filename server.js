@@ -17,9 +17,6 @@ app.set('views', path.join(__dirname, './views'))
 app.use('/', routes())
 
 
-require('./StockApi/index.js')(app);
-
-
 
 
 app.listen(port, () => {
