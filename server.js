@@ -3,6 +3,7 @@ const path = require('path')
 const routes = require('./routes')
 
 
+
 //app setup
 //Using port 3000,
 let port = 3000 || process.env.PORT;
@@ -14,7 +15,16 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './views'))
 
+//getting coin data
+app.use(async (request, response, next) => {
+  let coins = await coinPrices();
+  response.locals.coins = coins
+  return next()
+  }
+)
+
 app.use('/', routes())
+
 
 
 
