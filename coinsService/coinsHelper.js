@@ -19,7 +19,7 @@ class coinsHelper {
   async getAllNamesPrices() {
      const coinsAllNamesPrices  =  await this.coinsAllArray;
     return coinsAllNamesPrices.map(c => {
-      return {'name':c.name, 'price': c.price}
+      return {'name':c.name, 'price': c.price.toFixed(3)}
     }).filter(c => c.name.length !== 0) //some coins have no name empty string
   }
 

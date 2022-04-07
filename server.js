@@ -14,11 +14,12 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './views'))
+app.use(express.static(path.join(__dirname, './static')))
 
 //getting coin data
 app.use(async (request, response, next) => {
   let coins = new coinsHelper();
-  response.locals.coins = await coins.getAllNames()
+  response.locals.coins = await coins.getAllNamesPrices()
   return next()
   }
 )

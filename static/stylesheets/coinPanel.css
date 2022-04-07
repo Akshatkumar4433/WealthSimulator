@@ -1,0 +1,8 @@
+.container-coinPanel {
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+}
+.container-coinPanel div {
+  border: 1px solid red;
+}
