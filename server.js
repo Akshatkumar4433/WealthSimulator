@@ -1,7 +1,12 @@
 const express = require('express');
-const path = require('path')
-const routes = require('./routes')
-const coinsHelper = require('./coinsService/coinsHelper')
+const path = require('path');
+const routes = require('./routes');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const coinsHelper = require('./coinsService/coinsHelper');
+const passport = require('passport')
 
 
 //app setup
@@ -11,7 +16,22 @@ let port = 3000 || process.env.PORT;
 of express framework*/
 const app = express();
 
+app.use(morgan('dev'))
+app.use(cookieParser());
+app.use(bodyParser());
 
+/*creating session*/
+app.use(session({
+  secret: 'ilovemyself'
+})
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+
+
+//Static Files, view engine, template setup
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './views'))
 app.use(express.static(path.join(__dirname, './static')))
