@@ -10,6 +10,8 @@ const passport = require('passport')
 const flash = require('connect-flash')
 const configDB = require('./config/database.js');
 const mongoose = require('mongoose');
+
+console.log(configDB)
 mongoose.connect(configDB.url)
 
 //app setup
