@@ -1,10 +1,9 @@
 var LocalStrategy = require('passport-local').Strategy;
-var passport = require('passport')
 //contains schema
 var User = require('../app/models/user')
 
 
-module.exports = function() {
+module.exports = function(passport) {
     /* passport session setup */
     // what should be stored in session
     passport.serializeUser((user, done) => {
@@ -63,15 +62,12 @@ module.exports = function() {
     },
     function(req, email, password, done) {
         User.findOne({'local.email': email}, (err, user) => {
-             if (err)
-                return done(err);
-        
         if (err)
             return done(err);
         if (!user) 
             return done(null, false, req.flash('loginMessage', 'User not Found'))
         if (!user.validPassword(password))
-            return done(null, false, req.flash('loginMessage'),"Wrong Password" ) 
+            return done(null, false, req.flash('loginMessage',"Wrong Password" )) 
         return done(null ,user)
         
     });

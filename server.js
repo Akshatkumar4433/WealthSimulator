@@ -7,7 +7,10 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const coinsHelper = require('./coinsService/coinsHelper');
 const passport = require('passport')
-
+const flash = require('connect-flash')
+const configDB = require('./config/database.js');
+const mongoose = require('mongoose');
+mongoose.connect(configDB.url)
 
 //app setup
 //Using port 3000,
@@ -28,6 +31,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+require('./config/passport')(passport);
 
 
 
