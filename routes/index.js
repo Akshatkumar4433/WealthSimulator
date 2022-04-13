@@ -9,11 +9,12 @@ module.exports = () => {
     /* request.flash('loginMessage'), it is declared in passport.js file
        In scenerio of error there will be value assigned to it.
     */
+
     response.render('layout', {template: 'login',message: request.flash('loginMessage')})
   })
   router.post('/', passport.authenticate('local-login',{
     successRedirect: '/profile',
-    failueRedirect: '/',
+    failureRedirect: '/', 
     failureFlash: true,
   }))
   router.get('/signup', (request, response) => {
@@ -21,7 +22,7 @@ module.exports = () => {
     });
   router.post('/signup', passport.authenticate('local-signup', {
     successRedirect: '/profile',
-    failueRedirect : '/signup',
+    failureRedirect : '/signup',
     failureFlash: true, //allow flash messages
   }))
 

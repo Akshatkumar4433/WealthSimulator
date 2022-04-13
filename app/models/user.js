@@ -6,6 +6,8 @@ const userSchema = mongoose.Schema({
     local : {
         email : String,
         password : String,
+        own: Array,
+        Balance: Number,
     }
 })
 
