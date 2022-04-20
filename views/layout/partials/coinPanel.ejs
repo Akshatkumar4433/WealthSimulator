@@ -3,8 +3,12 @@
   <% coins.forEach(function(coin) { %>
     <%if (coin.price > 100) {%>
       <div>
+        <form method = "post" action="/">
+        <button>
     <p><%= coin.name%> </p>
     <p><%= coin.price%></p>
+    </button>
+    </form>
   </div>
     <%}%>
     <%})%>
@@ -14,8 +18,12 @@
   <% coins.forEach(function(coin) { %>
     <%if (coin.price > 10 && coin.price < 50) {%>
       <div>
+        <form method = "post" action = '/coinSelected' + <%= coin.name %> >
+        <button>
     <p><%= coin.name%> </p>
     <p><%= coin.price%></p>
+    </button>
+    </form>
   </div>
     <%}%>
     <%})%>

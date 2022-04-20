@@ -1,8 +1,8 @@
-const { request } = require('express');
+//const { request } = require('express');
 const express = require('express');
 const router = express.Router();
 const passport = require('passport')
-
+const coinSelected = require('./coinSelected')
 
 module.exports = () => {
   router.get('/', (request,response) => {
@@ -35,6 +35,8 @@ module.exports = () => {
     request.logout();
     response.redirect('/')
   });
+
+  router.use('/coinSelected/:id', coinSelected())
   return router;
 };
 
