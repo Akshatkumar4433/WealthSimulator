@@ -3,8 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = () => {
-    router.post('/coinSelected/:id', (request, response) => {
-        console.log(request)
-    })
-    return router;
+    router.get('/', (request, response) => {
+         router.locale.coin = coin.selected;
+         response.redirect('/profile')
+    });
+   return router;
 }

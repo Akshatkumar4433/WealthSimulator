@@ -36,7 +36,7 @@ module.exports = () => {
     response.redirect('/')
   });
 
-  router.use('/coinSelected/:id', coinSelected())
+  router.use('/coinSelected', coinSelected())
   return router;
 };
 
