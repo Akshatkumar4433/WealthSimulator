@@ -9,6 +9,7 @@ module.exports = () => {
          request.app.locals.coinPicked = undefined;
          let coinInfo = new coinsHelper();
          coinInfo = await coinInfo.getAllInfo(request.params.id);
+         console.log(coinInfo)
          request.app.locals.coinPicked = coinInfo;
          response.redirect('/profile')
          next()
