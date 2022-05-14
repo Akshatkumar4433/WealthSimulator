@@ -1,5 +1,12 @@
 <%= user %> 
 
 <div class = 'selected-coin'>
-    <%=coinPicked%>
+    <% if (coinPicked) { %>
+    <%= coinPicked.price %> 
+    <div class = 'selected-coin-description'>
+    <%=coinPicked.description%>
+    </div>
+    <input type="text">
+    <button>Buy</button>
+    <%}%>
 </div>

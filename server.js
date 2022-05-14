@@ -52,7 +52,7 @@ app.use(async (request, response, next) => {
 )
 
 
-
+//This is a hack, need to find a solution
 app.locals.coinPicked = undefined;
 
 app.use('/', routes())
