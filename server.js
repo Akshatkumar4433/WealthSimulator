@@ -42,6 +42,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './views'))
 app.use(express.static(path.join(__dirname, './static')))
 
+
 //getting coin data
 app.use(async (request, response, next) => {
   let coins = new coinsHelper();
@@ -49,6 +50,10 @@ app.use(async (request, response, next) => {
   return next()
   }
 )
+
+
+
+app.locals.coinPicked = undefined;
 
 app.use('/', routes())
 

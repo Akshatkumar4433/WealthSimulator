@@ -3,9 +3,10 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = () => {
-    router.get('/', (request, response) => {
-         router.locale.coin = coin.selected;
+    router.get('/:id', (request, response,next) => {
+         request.app.locals.coinPicked = request.params.id;
          response.redirect('/profile')
+         next()
     });
    return router;
 }
