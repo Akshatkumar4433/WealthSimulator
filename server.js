@@ -45,11 +45,14 @@ app.use(express.static(path.join(__dirname, './static')))
 
 //getting coin data
 app.use(async (request, response, next) => {
-  let coins = new coinsHelper();
-  response.locals.coins = await coins.getAllNamesPrices()
-  return next()
+  try {
+    let coins = new coinsHelper();
+    response.locals.coins = await coins.getNamesPricesSymbols()
   }
-)
+  catch(error) {
+    return next(error)
+  }
+})
 
 
 //This is a hack, need to find a solution

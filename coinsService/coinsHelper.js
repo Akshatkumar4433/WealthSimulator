@@ -30,6 +30,16 @@ class coinsHelper {
    }).filter(c => c.length !== 0)
   }
 
+  
+  async getNamesPricesSymbols() {
+    const coinsNamesPricesSymbols = await this.coinsAllArray;
+    return coinsNamesPricesSymbols.map(
+      c => {
+        return {name: c.name , symbol : c.asset_id, price:c.price}
+      }
+    ).filter(c => {return (c.name !== '' && c.symbol !== '' && c.price !== '') })
+
+  }
   async getPrice(symbol) {
     let coinsPricelist = await this.coinsAllArray;
     return coinsPricelist.filter(c => c.asset_id == symbol)[0].price
@@ -44,8 +54,13 @@ class coinsHelper {
 
 module.exports = coinsHelper;
 
+
+/* I still have to Learn how to make test for program
+ */
 //Testing
-let coin = new coinsHelper()
-coin.getSymbols().then(value => {console.log(value)})
-coin.getPrice('ETH').then(value => {console.log(value)})
-coin.getAllInfo('ETH').then(value => {console.log(value)})
+
+//let coin = new coinsHelper()
+//coin.getSymbols().then(value => {console.log(value)})
+//coin.getNamesPricesSymbols().then(value => {console.log(value)})
+//coin.getPrice('ETH').then(value => {console.log(value)})
+//coin.getAllInfo('ETH').then(value => {console.log(value)})
