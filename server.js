@@ -48,6 +48,7 @@ app.use(async (request, response, next) => {
   try {
     let coins = new coinsHelper();
     response.locals.coins = await coins.getNamesPricesSymbols()
+    return next()
   }
   catch(error) {
     return next(error)
